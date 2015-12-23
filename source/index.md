@@ -10,6 +10,15 @@ includes:
   - CardboardActivity
   - CardboardDeviceParams
   - CardboardView
+  - Contants
+  - Distortion
+  - DistortionRenderer
+  - Eye
+  - Eye.Type
+  - FieldOfView
+  - HeadMountedDisplay
+  - HeadTransform
+  - ScreenParams
 
 search: true
 ---

@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["java"]);
         });
       </script>
   </head>
@@ -28,9 +28,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="java">java</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -38,235 +36,3371 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="com-google-vrtoolkit-cardboard">com.google.vrtoolkit.cardboard</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-
-<h1 id="authentication">Authentication</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<h2 id="interfaces">Interfaces</h2>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>接口名</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><a href="#">CardboardView.Renderer</a></td>
+<td>提供给需要自己手动处理所有3D渲染细节的接口</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td><a href="#cardboardview-stereorender">CardboardView.StereoRenderer</a></td>
+<td>由默认接口处理所有3D渲染细节的接口</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+          <h1 id="cardboardview-stereorender">CardboardView.StereoRender</h1>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id="public-static-interface-cardboardview-stereorenderer">public static interface CardboardView.StereoRenderer</h3>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>该接口无需关心3D渲染的细节，渲染由 view 完成。开发者只需提供变换用的参数，渲染的细节与失真校正等都从 renderer 中抽象出来，并由 view 内部进行管理。</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="public-methods">Public Methods</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>接口定义</th>
+<th>接口名</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>abstract void</td>
+<td><a href="#public-abstract-void-ondraweye-eye-eye">onDrawEye</a>(Eye eye)</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>onFinishFrame(Viewport viewport)</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>onNewFrame(HeadTransform headTransfrom)</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>onRendererShutdown()</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>onSurfaceChanged(int width, int height)</td>
+</tr>
+<tr>
+<td>abstract void</td>
+<td>onSurfaceCreated(EGLConfig config)</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<h2 id="public-methods">Public Methods</h2>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<h3 id="public-abstract-void-ondraweye-eye-eye">public abstract void onDrawEye (<a href="#">Eye</a> eye)</h3>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>用于绘制在某一视点一直眼镜观察到的内容。</p>
+
+<p>当失真校正开启时，在调用时 GL 上下文会将绘制结果放入纹理提供的帧缓存中，若要在某些渲染阶段中修改帧缓存，需要通过 <code class="prettyprint">glGetIntegerv(GL_FRAMEBUFFER_BINDING, ...)</code>方法将帧缓存设为1。</p>
+
+<p>当 VR 模式开启时，<a href="#"><code class="prettyprint">onDrawEye</code></a>方法仅会被调用一次用于绘制单眼系统，且失真校正不会开启。开发者可以不受<code class="prettyprint">FieldOfView</code>的限制，创建任意大小的透视变换矩阵(可以通过<code class="prettyprint">ScreenParams.getWidth()/ScreenParams.getHeight()</code>获得宽高比)。查看<code class="prettyprint">setVRModeEnable</code>以获得更多的信息。</p>
+
+<h4 id="parameters">Parameters</h4>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>参数名</th>
+<th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>eye</td>
+<td>要渲染的眼睛的信息，包含要用到的变换信息</td>
 </tr>
 </tbody></table>
+
+<h3 id="public-abstract-void-onfinishframe-viewport-viewport">public abstract void onFinishFrame (<a href="#">Viewport</a> viewport)</h3>
+
+<p>该方法会在每一帧绘制完成前调用。</p>
+
+<p>当该方法被调用时，当前帧的绘制已经完成，且若失真校正开启，则校正也已完成。</p>
+
+<p>该方法可以覆盖修改已经完成的绘制结果，例如可以为用户绘制标识中心位置的准心。</p>
+
+<p>在该阶段的渲染会对整个绘制表面起效，而非对单个眼睛的视图起效。传入的<a href="#"><code class="prettyprint">viewport object</code></a>描述了绘制面的边界，并会被自动置于 GL 的上下文中。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>viewport</td>
+<td>整个 GL 绘制面的视口，会在调用前被自动设置。</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-abstract-void-onnewframe-headtransform-headtransfrom">public abstract void onNewFrame (<a href="#">HeadTransform</a> headTransfrom)</h3>
+
+<p>该方法会在每一帧绘制前被调用。</p>
+
+<p>可以用于改变不同帧或视点的渲染，所有不是针对特定眼睛的帧的预处理都应在此处处理。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>headTransform</td>
+<td>每一帧绘制是的头部位置的变换信息</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-abstract-void-onrenderershutdown">public abstract void onRendererShutdown ()</h3>
+
+<p>当渲染线程结束时被调用。</p>
+
+<p>用于释放 GL 资源以及进行关闭渲染线程的操作。仅当之前有调用过<a href="#"><code class="prettyprint">onSurfaceCreated</code></a>方法的情况下会被调用。</p>
+
+<h3 id="public-abstract-void-onsurfacechanged-int-width-int-height">public abstract void onSurfaceChanged (int width, int height)</h3>
+
+<p>当绘制表面尺寸变化时会被调用。</p>
+
+<p>所有值均为用于绘制一只眼睛的观察尺寸。当 VR 模式开启时，表示渲染两只眼睛的其中一只用的尺寸；当 VR 模式禁用时，则表示的是整个绘制面的尺寸。</p>
+
+<p>Viewport，视口的大小以及投影的细节会被自动更新。</p>
+
+<p>需要注意的是，通过 <a href="#"><code class="prettyprint">onDrawEye(Eye)</code></a> 传入的 eye 的参数是基于绘制面尺寸与横置的全屏尺寸相对应的假设下进行计算的，任何其他的配置都有可能产生收敛问题。</p>
+
+<p>还需要注意的是，3D渲染用到的表面尺寸对应的是单眼的尺寸，即在VR模式开启下整个可视表面宽度的一半。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>width</td>
+<td>新的显示面的宽度，单位为像素</td>
+</tr>
+<tr>
+<td>height</td>
+<td>新的显示面的高度，单位为像素</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-abstract-void-onsurfacecreated-eglconfig-config">public abstract void onSurfaceCreated (EGLConfig config)</h3>
+
+<p>该方法会在表面被创建时被调用。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>config</td>
+<td>用于创建表面的EGL选项</td>
+</tr>
+</tbody></table>
+
+          <h1 id="cardboardactivity">CardboardActivity</h1>
+
+<p><code class="prettyprint">public class CardboardActivity</code></p>
+
+<p>用于与Cardboard进行集成的基础Activity类。</p>
+
+<p>提供了与Cardboard进行交互的事件，并且处理了许多创建VR渲染Activity时的许多细节。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<p><a href="#cardboardactivity"><code class="prettyprint">CardboardActivity()</code></a></p>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>方法名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="cardboardview">CardboardView</a></td>
+<td>getCardboardView()</td>
+</tr>
+<tr>
+<td>synchronized boolean</td>
+<td>getConvertTapIntoTrigger()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>onCardboardTrigger()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setCardboardView(CardboardView cardboardView)</td>
+</tr>
+<tr>
+<td>synchronized boolean</td>
+<td>setConvertTapIntoTrigger(boolean enable)</td>
+</tr>
+</tbody></table>
+
+<h3 id="protected-methods">Protected Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>方法名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>void</td>
+<td>updateCardboardDeviceParams(CardboardDeviceParams newParams)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.long.Object</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>方法名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Object</td>
+<td>clone()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>equals(Object arg0)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>finalize()</td>
+</tr>
+<tr>
+<td>final Class&lt;?&gt;</td>
+<td>getClass</td>
+</tr>
+<tr>
+<td>int</td>
+<td>hashCode()</td>
+</tr>
+<tr>
+<td>final void</td>
+<td>notify()</td>
+</tr>
+<tr>
+<td>final void</td>
+<td>notifyAll()</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+</tr>
+<tr>
+<td>final void</td>
+<td>wait(long arg0, int arg1)</td>
+</tr>
+<tr>
+<td>final void</td>
+<td>wait(long arg0)</td>
+</tr>
+<tr>
+<td>final void</td>
+<td>wait()</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>From interface com.google.vrtoolkit.cardboard.VolumeKeyState.Handler</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>方法名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abstract boolean</td>
+<td>areVolumeKeysDisabled()</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>From interface com.google.vrtoolkit.cardboard.sensors.SensorConnection.SensorListener</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>方法名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abstract void</td>
+<td>onCardboardTrigger()</td>
+</tr>
+</tbody></table>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-cardboardactivity">public CardboardActivity()</h3>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-cardboardview-getcardboardview">public CardboardView getCardboardView ()</h3>
+
+<p>返回与该 activity 想关联的 <code class="prettyprint">CardboardView</code></p>
+
+<h4 id="returns">Returns</h4>
+
+<p>* 返回与该 activity 想关联的 <code class="prettyprint">CardboardView</code>, 返回值不为 null</p>
+
+<h3 id="public-synchronized-boolean-getconverttapintotrigger">public synchronized boolean getConvertTapIntoTrigger ()</h3>
+
+<p>返回轻触屏幕是否已被转换为 Cardboard 的触发动作</p>
+
+<h4 id="returns">Returns</h4>
+
+<p>* 是否轻触屏幕动作已被转换为 Cardboard 的触发动作</p>
+
+<h3 id="public-void-oncardboardtrigger">public void onCardboardTrigger ()</h3>
+
+<p>重写该方法来检测 Cardboard 的触发动作。当设备在 Cardboard 内时，提供了一种类似于单击的动作。</p>
+
+<h3 id="public-void-setcardboardview-cardboardview-cardboardview">public void setCardboardView (CardboardView cardboardView)</h3>
+
+<p>将 Cardboard view 与该 activity 关联。</p>
+
+<p>该方法不会改变 view 中的内容，仅会将其与 activity 相关联以确保该 <code class="prettyprint">CardboardView</code> 能接收到需要的有关 activity 生命周期中的消息。</p>
+
+<p>若使用 <code class="prettyprint">setContentView</code> 方法直接设置了 <code class="prettyprint">CardboardView</code> 则该方法会被自动调用。当使用其他方法设置了 <code class="prettyprint">CardboardView</code>时，需要手动调用该方法（例如，使用布局资源设置时）。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardboardView</td>
+<td>要与 activity 关联的 Cardboard view ，不能为 null</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-synchronized-void-setconverttapintotrigger-boolean-enabled">public synchronized void setConvertTapIntoTrigger (boolean enabled)</h3>
+
+<p>设置是否将轻触屏幕动作转换为 Cardboard 的触发动作。</p>
+
+<p>若为 true，则轻触屏幕动作会触发 <code class="prettyprint">onCardboardTrigger</code>， 默认为 false</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>是否将轻触屏幕动作转换为 Cardboard 的触发动作</td>
+</tr>
+</tbody></table>
+
+<h2 id="protected-methods">Protected Methods</h2>
+
+<h3 id="protected-void-updatecardboarddeviceparams-cardboardactivity-newparams">protected void updateCardboardDeviceParams (CardboardActivity newParams)</h3>
+
+<p>请求为当前的 Cardboard 设备更新参数。</p>
+
+<p>该方法会对比传入参数与已有设置的异同，并更新不同的参数。</p>
+
+<p>该方法调用前必须已设置好 <code class="prettyprint">CardboardView</code>，查看 <code class="prettyprint">setCardboardView</code></p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newParams</td>
+<td>新的 Cardboard 设备参数</td>
+</tr>
+</tbody></table>
+
+          <h1 id="cardboarddeviceparams">CardboardDeviceParams</h1>
+
+<h3 id="public-class-cardboarddeviceparams">public class CardboardDeviceParams</h3>
+
+<p>定义与 Cardboard 适配设备的物理参数。</p>
+
+<p>该模型假设适配设备：</p>
+
+<ol>
+<li>镜头与设备平行</li>
+<li>每个镜头的中心在同一高度（以设备底部为计算基准）</li>
+<li>镜头关于设备的中心对称</li>
+<li>每个镜头中心的可视区域大小相等</li>
+</ol>
+
+<p>这些参数对于不同的镜头与设备而言都有可能是不同的，为方便起见，可以将这些参数存储在 Cardboard 的 NFC 标签中。</p>
+
+<h3 id="nested-classes">Nested Classes</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enum</td>
+<td><a href="#">CardboardDeviceParams.VerticalAlignmentType</a></td>
+<td>用于指示根据镜头中心的垂直排版方案的枚举</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CardboardDeviceParams()</td>
+</tr>
+<tr>
+<td>CardboardDeviceParams(CardboardDeviceParams params)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>static CardboardDeviceParams</td>
+<td>createFromInputStream(InputStream inputStream)</td>
+</tr>
+<tr>
+<td>static CardboardDeviceParams</td>
+<td>createFromNfcContents(NdefMessage tagContents)</td>
+</tr>
+<tr>
+<td>static CardboardDeviceParams</td>
+<td>createFromUri(Uri uri)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>equals(Object other)</td>
+</tr>
+<tr>
+<td>Distortion</td>
+<td>getDistortion()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getHasMagnet()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getInterLensDistance()</td>
+</tr>
+<tr>
+<td>FieldOfView</td>
+<td>getLeftEyeMaxFov()</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getModel()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getScreenToLensDtance()</td>
+</tr>
+<tr>
+<td>String</td>
+<td>getVendor()</td>
+</tr>
+<tr>
+<td>CardboardDeviceParams.VerticalAlignmentType</td>
+<td>getVerticalAlignment()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getVerticalDistanceToLensCenter()</td>
+</tr>
+<tr>
+<td>static boolean</td>
+<td>isCardboardUri(Uri uri)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>isDefault()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setHasMagnet(boolean magnet)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setInterLensDistance(float interLensDistance)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setModel(String model)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setScreenToLensDistance(float screenToLensDistance)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVendor(String vendor)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVerticalAlignment(CardboardDeviceParams.VerticalAlignmentType vertiaclAlignment)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVerticalDistanceToLensCenter(float verticalDistanceToLensCenter)</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+</tr>
+<tr>
+<td>Uri</td>
+<td>toUri()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>writeToOutputStream(OutputStream outputStream)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-cardboarddeviceparams">public CardboardDeviceParams ()</h3>
+
+<p>使用默认的 Cardboard v1.0.0 的参数对设备进行初始化。</p>
+
+<p>可以使用 <a href="#"><code class="prettyprint">HeadMountedDisplayManager</code></a> 来访问 Cardboard 设备参数为听筒进行优化。</p>
+
+<h3 id="public-cardboarddeviceparams-cardboarddeviceparams-params">public CardboardDeviceParams (CardboardDeviceParams params)</h3>
+
+<p>为已有的设备参数创建一份拷贝。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>params</td>
+<td>要拷贝的设备参数</td>
+</tr>
+</tbody></table>
+
+<h2 id="public-methods">Public methods</h2>
+
+<h3 id="public-static-cardboarddeviceparams-createfrominputstream-inputstream-inputstream">public static CardboardDeviceParams createFromInputStream (InputStream inputStream)</h3>
+
+<p>从 <code class="prettyprint">InputStream</code> 中初始化 Cardboard 设备参数，调用者负责关闭流。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inputStream</td>
+<td>包含设备参数的输入流</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个新的设备参数对象，发生错误时返回 <code class="prettyprint">null</code></li>
+</ul>
+
+<h3 id="public-static-cardboarddeviceparams-createfromnfccontents-ndefmessage-tagcontents">public static CardboardDeviceParams createFromNfcContents (NdefMessage tagContents)</h3>
+
+<p>根据 NFC 标签中的内容初始化设备参数</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inputStream</td>
+<td>包含设备参数的输入流</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个新的设备参数对象，发生错误时返回 <code class="prettyprint">null</code></li>
+</ul>
+
+<h3 id="public-static-cardboarddeviceparams-createfromuri-uri-uri">public static CardboardDeviceParams createFromUri (Uri uri)</h3>
+
+<p>从 Uri 初始化设备参数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uri</td>
+<td>用于读取设备参数的 uri</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个新的设备参数对象，发生错误时返回 <code class="prettyprint">null</code></li>
+</ul>
+
+<h3 id="public-boolean-equals-object-other">public boolean equals (Object other)</h3>
+
+<p>比较当前实例与指定对象是否相同。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要与当前实例进行比较的对象</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若两个对象相同则返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">fasle</code></li>
+</ul>
+
+<h3 id="public-distortion-getdistortion">public Distortion getDistortion()</h3>
+
+<p>返回镜头失真模型。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>镜头失真模型。</li>
+</ul>
+
+<h3 id="public-boolean-gethasmagnet">public boolean getHasMagnet()</h3>
+
+<p>返回 Cardboard 设备是否有磁铁。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若有磁铁返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="public-float-getinterlensdistance">public float getInterLensDistance ()</h3>
+
+<p>返回设备镜头间距。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>单位为米的镜头间距</li>
+</ul>
+
+<h3 id="public-fieldofview-getlefteyemaxfov">public FieldOfView getLeftEyeMaxFov ()</h3>
+
+<p>返回左眼通过镜头的最大可视区域，实际的渲染区域大小将会根据该区域大小以及屏幕大小决定。渲染时，一个同样的大小的区域会被应用于右眼。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>左眼的最大可视区域</li>
+</ul>
+
+<h3 id="public-string-getmodel">public String getModel ()</h3>
+
+<p>返回表示设备模型的字符串。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一串用于表示设备模型的字符串</li>
+</ul>
+
+<h3 id="public-float-getscreentolensdistance">public float getScreenToLensDistance ()</h3>
+
+<p>返回以米为单位的屏幕到镜头的距离</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>以米为单位的屏幕到镜头的距离</li>
+</ul>
+
+<h3 id="public-string-getvendor">public String getVendor ()</h3>
+
+<p>返回表示设备供应商的字符串</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一串用于表示设备供应商的字符串</li>
+</ul>
+
+<h3 id="public-cardboarddeviceparams-verticalalignmenttype-getverticalalignment">public CardboardDeviceParams.VerticalAlignmentType getVerticalAlignment ()</h3>
+
+<p>获得垂直排版方案。</p>
+
+<h3 id="public-float-getverticaldistancetolenscenter">public float getVerticalDistanceToLensCenter ()</h3>
+
+<p>返回设备到镜头中心的垂直距离。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>镜头中心到设备底部或顶部边缘的垂直距离，单位为米</li>
+</ul>
+
+<h3 id="public-static-boolean-iscardboarduri-uri-uri">public static boolean isCardboardUri (Uri uri)</h3>
+
+<p>若可根据给定的 uri 确定一个 Cardboard 设备则返回 <code class="prettyprint">true</code></p>
+
+<h3 id="public-boolean-isdefault">public boolean isDefault ()</h3>
+
+<h3 id="public-void-sethasmagnet-booolean-magnet">public void setHasMagnet (booolean magnet)</h3>
+
+<p>设置该 Cardboard 设备是否有磁铁。</p>
+
+<h3 id="public-void-setinterlensdistance-float-interlensdistance">public void setInterLensDistance (float interLensDistance)</h3>
+
+<p>设置设备的镜头间距。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>interLensDistance</td>
+<td>以米为单位的两个镜头中心的距离</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setmodel-string-model">public void setModel (String model)</h3>
+
+<p>设置表示设备模型的字符串。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>要设置的表示设备模型的字符串</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setscreentolensdistance-float-screentolensdistance">public void setScreenToLensDistance (float screenToLensDistance)</h3>
+
+<p>设置屏幕到镜头光学中心的距离。</p>
+
+<p>该值影响了渲染时的缩放比例。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>screenToLensDistance</td>
+<td>以米为单位的屏幕到镜头的距离</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setvendor-string-vendor">public void setVendor (String vendor)</h3>
+
+<p>设置表示设备供应商的字符串</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vendor</td>
+<td>要设置的表示设备供应商的字符串</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setverticalalignment-cardboarddeviceparams-verticalalignmenttype-vertiaclalignment">public void setVerticalAlignment (CardboardDeviceParams.VerticalAlignmentType vertiaclAlignment)</h3>
+
+<p>设置垂直排版方案。</p>
+
+<h3 id="public-void-setverticaldistancetolenscenter-float-verticaldistancetolenscenter">public void setVerticalDistanceToLensCenter (float verticalDistanceToLensCenter)</h3>
+
+<p>设置到镜头中心的垂直距离。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>verticalDistanceToLensCenter</td>
+<td>要设置的设备顶部或底部到镜头中心的垂直距离，以米为单位</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-string-tostring">public String toString ()</h3>
+
+<p>返回一串简明、可读的关于对象的描述。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>关于该对象的文字描述</li>
+</ul>
+
+<h3 id="public-uri-touri">public Uri toUri ()</h3>
+
+<p>将当前的 Cardboard 设备参数编码为 Uri。</p>
+
+<p>返回的 Uri 可以被写入 NFC 标签中或者文件以及二维码中。</p>
+
+<p>可以通过 <code class="prettyprint">Uri.buildUpon()</code> 与 <code class="prettyprint">Uri.Builder.appendQueryParameter(key, value)</code> 方法为返回的 Url 添加额外的参数。参数的键名 URI_KEY_PARAMS 为保留字。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>将 Cardboard 设备参数编码二生成的 Uri</li>
+</ul>
+
+<h3 id="public-boolean-writetooutputstream-outputstream-outputstream">public boolean writeToOutputStream (OutputStream OutputStream)</h3>
+
+<p>将设备参数写入指定的输出流中。</p>
+
+<p>调用者负责关闭流。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>OutputStream</td>
+<td>用来存储设备参数的输出流</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns
+<ul>
+<li>设备参数是否写入成功</li>
+</ul>
+
+          <h1 id="cardboardview">CardboardView</h1>
+
+<h3 id="public-class-cardboardview">public class CardboardView</h3>
+
+<p>为简化 VR 渲染而对 GLSurfaceView 进行的扩展。</p>
+
+<p>被设计为在全屏模式下且处于横置状态使用。</p>
+
+<p>该 view 可以被当做普通的 <code class="prettyprint">GLSurfaceView</code> 使用，但需要实现以下两个渲染接口中的一个:</p>
+
+<ul>
+<li><a href="#cardboardview-stereorenderer"><code class="prettyprint">CardboardView.StereoRenderer</code></a>: 分离了所有3D渲染的细节。</li>
+<li><a href="#cardboardview-renderer"><code class="prettyprint">CardboardView.Renderer</code></a>: 为需要自己实现所有3D渲染细节的复杂工程提供的接口。</li>
+</ul>
+
+<p>推荐使用 <a href="#cardboardview-stereorenderer"><code class="prettyprint">CardboardView.StereoRenderer</code></a> 接口，仅当真的需要时再使用 <a href="#cardboardview-renderer"><code class="prettyprint">CardboardView.Renderer</code></a> 接口。</p>
+
+<p>该 view 支持在 VR 模式与普通模式间的切换，可以通过调用 <a href="#"><code class="prettyprint">setVRModeEnable</code></a> 方法在任何时间进行切换。</p>
+
+<h3 id="nested-classes">Nested Classes</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>interface</td>
+<td><a href="#cardboardview-renderer"><code class="prettyprint">CardboardView.Renderer</code></a></td>
+<td>为需要自己实现所有3D渲染细节的复杂工程提供的接口</td>
+</tr>
+<tr>
+<td>interface</td>
+<td><a href="#cardboardview-stereorenderer"><code class="prettyprint">CardboardView.StereoRenderer</code></a></td>
+<td>分离了3D渲染细节的接口</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>boolean</td>
+<td>getAlignmentMarkerEnabled()</td>
+</tr>
+<tr>
+<td>CardboardDeviceParams</td>
+<td>getCardboardDeviceParams()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getDistortionCorrentionEnabled()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getElectronicDisplayStabilizationEnabled()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getGyroBiasEstimationEnabled()</td>
+</tr>
+<tr>
+<td>HeadMountedDisplay</td>
+<td>getHeadMountedDisplay()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getInterpupillaryDistance()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getNeckModelFactor()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getRestoreGLstateEnabled()</td>
+</tr>
+<tr>
+<td>ScreenParams</td>
+<td>getScreenParams()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getSettingsButtonEnabled()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getVRmode()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getVignetteEnabled()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>onPause()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>onResume()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>resetHeadTracker()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setAlignmentMarkerEnbled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setDistortionCorrentionEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setElectronicDisplayStabilizat5ionEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setGyroBiasEstimationEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setNeckModelEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setNeckModelFactor(float factor)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setOnCardboardTriggerListener(Runnable listener)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setRenderer(CardboardView.Renderer renderer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setRenderer(CardboardView.StereoRenderer renderer)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setRestoreGLStateEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setSettingsButtonEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVRModeEnable(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVignetteEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>undistortTexture(int inputTexture)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>updateCardboardDeviceParams(CardboardDeviceParams cardboardDeviceParams)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>updateScreenParams(ScreenParams screenParams)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object<br></li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-cardboardview-context-context">public CardboardView (Context context)</h3>
+
+<h3 id="public-cardboardview-context-context-attributeset-attrs">public CardboardView (Context context, AttributeSet attrs)</h3>
+
+<h2 id="public-methods">public Methods</h2>
+
+<h3 id="public-boolean-getalignmentmarkerenabled">public boolean getAlignmentMarkerEnabled ()</h3>
+
+<p>返回排版准线是否绘制。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若排版准线开启则返回 <code class="prettyprint">true</code> ，否则返回 <code class="prettyprint">false</code> ，默认为开启 </li>
+</ul>
+
+<h3 id="public-cardboarddeviceparams-getcardboarddeviceparams">public CardboardDeviceParams getCardboardDeviceParams ()</h3>
+
+<p>返回当前 Cardboard 设备的物理参数。</p>
+
+<p>该方法等同于 <a href="#"><code class="prettyprint">getHeadMountedDisplay().getCardboardDeviceParams()</code></a>。</p>
+
+<p>修改返回的对象不会影响渲染，若要修改的参数生效需调用 <a href="#"><code class="prettyprint">updateCardboardDeviceParams</code></a> 方法。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>当前 Cardboard 设备的物理参数</li>
+</ul>
+
+<h3 id="public-boolean-getdistortioncorrentionenabled">public boolean getDistortionCorrentionEnabled ()</h3>
+
+<p>返回失真校正是否开启。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若失真校正开启返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="publice-boolean-getelectronicdisplaystabilizationenabled">publice boolean getElectronicDisplayStabilizationEnabled ()</h3>
+
+<p>(实验性质) 返回电子显示稳定(EDS)是否开启。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若 EDS 开启返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="public-boolean-getgyrobiasestimationenabled">public boolean getGyroBiasEstimationEnabled ()</h3>
+
+<p>返回陀螺仪偏差估计是否开启。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若陀螺仪偏差估计开启则返回 <code class="prettyprint">true</code></li>
+</ul>
+
+<h3 id="public-float-getinterpupillarydistance">public float getInterpupillaryDistance ()</h3>
+
+<p>获得瞳距看，Cardboard 框架目前假设用户的 IPD 与观察设备的镜头间距相同。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>当前瞳距，单位为米</li>
+</ul>
+
+<h3 id="public-float-getneckmodelfactor">public float getNeckModelFactor ()</h3>
+
+<p>获得用于进行头部跟踪颈部模型。</p>
+
+<p>参考 <a href="#"><code class="prettyprint">setNeckModelEnabled()</code></a> 与 <a href="#"><code class="prettyprint">setNeckModelFactor()</code></a> 以获取更详细的信息。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>颈部模型因子</li>
+</ul>
+
+<h3 id="public-boolean-getrestoreglstateenabled">public boolean getRestoreGLstateEnabled ()</h3>
+
+<p>返回应用的 GL 状态经过后处理后是否被恢复。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若 GL 状态复原开启则返回 <code class="prettyprint">true</code> ，否则返回 <code class="prettyprint">false</code> ，默认开启</li>
+</ul>
+
+<h3 id="public-screenparams-getscreenparams">public ScreenParams getScreenParams ()</h3>
+
+<p>返回插入的设备的屏幕参数。</p>
+
+<p>该方法等同于 <a href="#"><code class="prettyprint">getHeadMountedDisplay().getScreenParams()</code></a>。</p>
+
+<p>修改返回的对象不会影响渲染，若要修改的参数生效需调用 <a href="#"><code class="prettyprint">updateScreenParams</code></a> 方法。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>当前插入设备的屏幕参数</li>
+</ul>
+
+<h3 id="public-boolean-getsettingsbuttonenabled">public boolean getSettingsButtonEnabled ()</h3>
+
+<p>返回设置按钮是否绘制。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若设置按钮启用则返回 <code class="prettyprint">true</code> ， 否则返回 <code class="prettyprint">false</code> ，默认为开启</li>
+</ul>
+
+<h3 id="public-boolean-getvrmode">public boolean getVRmode ()</h3>
+
+<p>返回当前 VR 模式是否开启</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若 VR 模式开启则返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="public-boolean-getvignetteenabled">public boolean getVignetteEnabled ()</h3>
+
+<p>返回渐晕效果是否开启。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若渐晕效果开启则返回 <code class="prettyprint">true</code> ，否则返回 <code class="prettyprint">false</code> ，默认为开启</li>
+</ul>
+
+<h3 id="public-void-onpause">public void onPause ()</h3>
+
+<p>通知 view ， activity 已被暂停。</p>
+
+<h3 id="public-void-onresume">public void onResume ()</h3>
+
+<p>通知 view ， activity 已被恢复。</p>
+
+<h3 id="public-void-resetheadtracker">public void resetHeadTracker ()</h3>
+
+<p>使头部追踪器重置。</p>
+
+<p>除其他事，该方法会将场景的Z轴与手机当前的朝向对齐。</p>
+
+<h3 id="public-void-setalignmentmarkerenbled-boolean-enabled">public void setAlignmentMarkerEnbled (boolean enabled)</h3>
+
+<p>启用或禁用绘制竖直将屏幕分为两半的标记线。该标记是用来帮助用户校正 Cardboard 与手机的位置的。</p>
+
+<p>仅当 VR 模式开启时有效。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启绘制标记线，false表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setdistortioncorrentionenabled-boolean-enabled">public void setDistortionCorrentionEnabled (boolean enabled)</h3>
+
+<p>设置是否开启失真校正。</p>
+
+<p>默认开启，会从调用后的下一帧绘制开始生效。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启失真校正，false表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setelectronicdisplaystabilizat5ionenabled-boolean-enabled">public void setElectronicDisplayStabilizat5ionEnabled (boolean enabled)</h3>
+
+<p>(实验性质) 开启或禁用电子显示稳定(EDS)。</p>
+
+<p>电子显示稳定会在失真校正过程中完成（故仅当失真校正开启时有效）。通过读取传感器最近的输入，判断若在当前帧绘制完成后仍有头部转动，则根据转动角度扭曲已经绘制好的画面。该功能可以用来降低延时。</p>
+
+<p>该功能仍处于实验性质，默认禁用。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启EDS，false表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setgyrobiasestimationenabled-boolean-enabled">public void setGyroBiasEstimationEnabled (boolean enabled)</h3>
+
+<p>开启或禁用用于头部追踪的陀螺仪偏差估计。</p>
+
+<p>陀螺仪经常会产生偏移，即在不工作的状态下返回值不为零。这将会使头部追踪产生错误的偏移。当陀螺仪偏差估计开启时， Cardboard 框架会持续地估计陀螺仪的偏差，并据此对原始的陀螺仪返回数据进行校正，借此来降低头部追踪中产生的错误偏差。陀螺仪偏差估计默认开启。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启陀螺仪偏差估计，false表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setneckmodelenabled-9">public void setNeckModelEnabled 9)</h3>
+
+<p>完全开启或禁用用于头部追踪的颈部模型。</p>
+
+<p>颈部模型是用来模拟基于颈部的自然的头部转动，而非基于双眼中点的会对旋转产生额外平移的模拟。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启颈部模型，false表示禁用。等价于调用 setNeckModelFactor(enabled ? 1.0 : 0.0)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setneckmodelfactor-float-factor">public void setNeckModelFactor (float factor)</h3>
+
+<p>设置用于头部追踪的颈部模型因子。</p>
+
+<p>参考 <a href="#public-void-setNeckModelEnabled"><code class="prettyprint">setNeckModelEnabled()</code></a> 以获取更多信息。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>factor</td>
+<td>颈部模型因子介于 0.0f 与 1.0f 之间。设置为 0.0f 会完全禁用颈部模型，设置为 1.0f 则会完全启用颈部模型。介于 0.0f 与 1.0f 间的值则会根据颈部因子的大小对完全颈部模型与无颈部模型的结果进行线性插值。</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setoncardboardtriggerlistener-runnable-listener">public void setOnCardboardTriggerListener (Runnable listener)</h3>
+
+<p>为 Cardboard 触发动作设置监听器。</p>
+
+<p>仅当你没有使用 <a href="#CardboardActibity"><code class="prettyprint">CardboardActivity</code></a> 并且希望在 <a href="#CardboardView"><code class="prettyprint">CardboardView</code></a> 层处理触发动作是使用该函数。如果你在使用 <a href="#CardboardActibity"><code class="prettyprint">CardboardActivity</code></a> ，推荐使用 <a href="#CardboardActibity"><code class="prettyprint">CardboardActivity</code></a> 的 onCardboardTrigger 方法来替代此函数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>listener</td>
+<td>Cardboard 触发动作发生时的回调函数</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setrenderer-cardboardview-renderer-renderer">public void setRenderer (<a href="#cardboardview-renderer">CardboardView.Renderer</a> renderer)</h3>
+
+<p>设置用来处理所有3D渲染细节的渲染器。</p>
+
+<p>在该对象的整个生命周期内仅能设置一个渲染器，查看 <a href="#cardboardview-renderer"><code class="prettyprint">Renderer</code></a> 接口以获取更多信息。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>renderer</td>
+<td>要设置的渲染器，不能为 null</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setrenderer-cardboardview-stereorenderer-renderer">public void setRenderer (<a href="#cardboardview-renderer">CardboardView.StereoRenderer</a> renderer)</h3>
+
+<p>设置以分离3D渲染细节的渲染 view 的渲染器。</p>
+
+<p>在该对象的整个生命周期内仅能设置一个渲染器，查看 <a href="#cardboardview-stereorenderer"><code class="prettyprint">StereoRenderer</code></a> 接口以获取更多信息。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>renderer</td>
+<td>要设置的3D渲染器</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setrestoreglstateenabled-boolean-enabled">public void setRestoreGLStateEnabled (boolean enabled)</h3>
+
+<p>启用或禁用后处理后的应用的 GL 状态恢复。</p>
+
+<p>CardboardView 可能会在每一帧的绘制中加入后处理步骤。例如，应用的图像可能会被渲染进材质中而非屏幕上。若该开关开启，则 Cardboard 框架确保下一帧开始时的 GL 状态与上一帧结束时的 GL 状态相同。默认开启。</p>
+
+<p>若禁用，则应用的运行表现会得到改善，但在每一帧的绘制开始时以下关于 GL 状态机的假设不能得到保证：</p>
+
+<ul>
+<li>视口</li>
+<li>清除用色</li>
+<li>已启用的材质单元</li>
+<li>正在使用的着色器程序</li>
+<li>顶点属性（指针以及是否启用）</li>
+<li>GL_CULL_FACE 与 GL_SCISSOR_TEST 是否启用</li>
+<li>GL_ARRAY_BUFFER 与 GL_ELEMENT_ARRAY_BUFFER 的绑定关系</li>
+<li>GL_TEXTURE_2D 与0号材质单元的绑定关系</li>
+</ul>
+
+<p>有两项例外：</p>
+
+<ol>
+<li>无论该开关是否开启，当前的边界帧缓存都会被恢复</li>
+<li>顶点属性的绑定永远不会恢复。任何在上一帧结束时对 glVertexAttribPointer 的调用都不会对下一帧开始时的绘制产生任何影响</li>
+</ol>
+
+<h4 id="　parameters">　Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启 GL 状态恢复， false 表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setvrmodeenable-boolean-enabled">public void setVRModeEnable (boolean enabled)</h3>
+
+<p>开启或关闭 VR 渲染模式。</p>
+
+<p>控制3D渲染与失真校正，默认开启。会在调用后的下一帧开始生效。</p>
+
+<p>若禁用，瞳距不会被应用于针对眼睛的变换，自动失真校正也不会生效，透视投影的可视区域也有可能发生偏转，尤其是在没有设置为全屏模式时。</p>
+
+<p>参考 <a href="#cardboardview-renderer"><code class="prettyprint">Renderer</code></a> 与 <a href="#cardboardview-stereorenderer"><code class="prettyprint">StereoRenderer</code></a> 的文档以获得更多的细节。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启 VR 模式， false 表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setvignetteenabled-boolean-enabled">public void setVignetteEnabled (boolean enabled)</h3>
+
+<p>开启或禁用帧边缘的渐晕效果。</p>
+
+<p>若该开关开启，则失真着色器会对可视边缘施加变暗效果以模拟渐晕效果。</p>
+
+<p>默认开启。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启渐晕效果， false 表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-undistorttexture-int-inputtexture">public void undistortTexture (int inputTexture)</h3>
+
+<p>对提供的纹理进行变形矫正并将渲染结果写入输出缓存中。</p>
+
+<p>该方法为那些使用自己的渲染循环的并无法使用 <a href="#cardboardview-renderer"><code class="prettyprint">Renderer</code></a> 与 <a href="#cardboardview-stereorenderer"><code class="prettyprint">StereoRenderer</code></a> 接口的用户提供。不推荐因其他原因而使用。</p>
+
+<p>若渲染器已设置，纹理变性矫正会在渲染线程中完成。否则该操作会在调用线程中完成。调用者负责确保使用的线程中的 GL 上下文中材质的可用性。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inputTexture</td>
+<td>要进行变形矫正的纹理</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-updatecardboarddeviceparams-cardboarddeviceparams-cardboarddeviceparams">public void updateCardboardDeviceParams (<a href="#cardboarddeviceparams"><code class="prettyprint">CardboardDeviceParams</code></a> cardboarddeviceparams)</h3>
+
+<p>更新用于渲染的 Cardboard 设备的物理参数。</p>
+
+<p>将会在调用后的第一帧开始生效。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardboardDeviceParams</td>
+<td>要设置的 Cardboard 适配设备的物理参数。若传入对象为 null 或与原本的参数相同，则请求会被忽略。</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-updatescreenparams-screenparams-screenparams-screenparams">public void updateScreenParams ([ScreenParams screenParams] screenParams)</h3>
+
+<p>更新用于渲染的屏幕参数。</p>
+
+<p>更新插入的 Cardboard 设备的屏幕参数，改动会在调用后的下一帧生效。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>screenParams</td>
+<td>要更新的参数，若为 null 则会被忽略</td>
+</tr>
+</tbody></table>
+
+          <h1 id="constants">Constants</h1>
+
+<h3 id="public-class-contants">public class Contants</h3>
+
+<p>包含常用常量的静态类。</p>
+
+<h3 id="constants">Constants</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>常量名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>String</td>
+<td>CARDBOARD_CATEGORY</td>
+<td>使用 vrtoolkit 的 App 应在 AndroidManifest.xml 中包含该常量（与 MAIN action 一起）</td>
+</tr>
+<tr>
+<td>String</td>
+<td>VERSIGON</td>
+<td>vrtoolkit 版本</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="constants">Constants</h2>
+
+<h3 id="public-static-final-string-cardboard_category">public static final String CARDBOARD_CATEGORY</h3>
+
+<p>使用 vrtoolkit 的 App 应在 AndroidManifest.xml 中包含该常量（与 MAIN action 一起）,用该种类标记的 Activity 会在 Cardboard 启动器的 Cardboard 应用中显示。</p>
+
+<p>意图过滤器示例：</p>
+
+<p>常量值： &ldquo;com.google.intent.category.CARDBOARD&rdquo;</p>
+
+<h3 id="public-static-final-string-versigon">public static final String VERSIGON</h3>
+
+<p>vrtoolkit 版本号。</p>
+
+<p>常量值： &ldquo;0.5.5&rdquo;</p>
+
+          <h1 id="distortion">Distortion</h1>
+
+<h3 id="public-class-distortion">public class Distortion</h3>
+
+<p>定义了所有需要用于校正透镜造成的失真的参数。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Distortion()</td>
+</tr>
+<tr>
+<td>Distortion(Distortion other)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>float</td>
+<td>distort(float radius)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>distortInverse(float radius)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>distortionFactor(float radius)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>equals(Object other)</td>
+</tr>
+<tr>
+<td>Distortion</td>
+<td>getApproximateInverseDistortion(float maxRadiux)</td>
+</tr>
+<tr>
+<td>float[]</td>
+<td>getCoefficients()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setCofficients(float[] coefficients)</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-distortion">public Distortion ()</h3>
+
+<h3 id="public-distortion-distortion-other">public Distortion (Distortion other)</h3>
+
+<p>拷贝构造函数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要拷贝的 distortion 对象</td>
+</tr>
+</tbody></table>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-float-distort-float-radius">public float distort (float radius)</h3>
+
+<p>根据失真因子对传入的透镜半径进行变形处理。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>radius</td>
+<td>以透镜中心为圆心的半径</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>失真后的半径</li>
+</ul>
+
+<h3 id="public-float-distortinverse-float-radius">public float distortInverse (float radius)</h3>
+
+<p>根据失真后的半径计算原始半径。</p>
+
+<p>也可以使用 getApproximateInverseDistortion() 方法计算，速度更快但不太精准。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>radius</td>
+<td>失真后的透镜半径</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>未失真的原始半径</li>
+</ul>
+
+<h3 id="public-float-distortionfactor-float-radius">public float distortionFactor (float radius)</h3>
+
+<p>返回该店的失真因子。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>radius</td>
+<td>该点以透镜中心为圆心的的半径</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>失真因子。乘以该因子对某一点进行失真处理。</li>
+</ul>
+
+<h3 id="public-boolean-equals-object-other">public boolean equals (Object other)</h3>
+
+<p>比较该实例与指定对象是否相等。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要与当前实例比较的对象</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若相等则返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="public-distortion-getapproximateinversedistortion-float-maxradiux">public Distortion getApproximateInverseDistortion (float maxRadiux)</h3>
+
+<p>通过最小二乘法构造一个逆失真对象。</p>
+
+<p>该函数是用于实现应用层面的自定义失真。通过对返回的对象使用 <code class="prettyprint">.getCoefficients()</code> 方法来获得逆失真函数的系数。</p>
+
+<p>这是一种近似求逆，对返回的对象使用  <code class="prettyprint">.distort()</code> 函数可以获得更快的执行速度但会随时一定的精度。仅当输入值在 0 到 maxRadiux 之间时，能够获得有效的结果。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>maxRadiux</td>
+<td>支持的最大半径。应于最大可观察角度保持一致。</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>新的 Distortion 对象</li>
+</ul>
+
+<h3 id="public-float-getcoefficients">public float[] getCoefficients ()</h3>
+
+<p>返回当前的镜头失真校正系数。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个包含当前失真校正系数的浮点数组</li>
+</ul>
+
+<h3 id="public-void-setcofficients-float-coefficients">public void setCofficients (float[] coefficients)
+<p>设置镜头的失真校正系数。</p>
+
+<p>系数 Ki 与下式的失真方程对应：</p>
+
+<p><code class="prettyprint">p&#39; = p ( 1 + K1 r^2 + K2 r^4 + ... + Kn r^(2n) )</code></p>
+
+<p>r 表示距光学中心的距离， p 为输入点， p&rsquo; 为输出结果。</p>
+
+          <h1 id="distortionrenderer">DistortionRenderer</h1>
+
+<h3 id="public-class-distortionrenderer">public class DistortionRenderer</h3>
+
+<p>封装了所有用于镜头失真校正的渲染操作。</p>
+
+<p>该类并不保证线程安全。出于性能考虑，该类中暴露出的公有方法假定在互斥环境中运行（如在同一线程或不重叠的多个线程中）。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DistortionRenderer()</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>void</td>
+<td>afterDrawFrame()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>beforeDrawFrame()</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>haveViewportsChanged()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>onFovChanged(HeadMountedDisplay hmd, FieldOfView leftFov, FieldOfView rightFov, float virtualEyeToScreenDistance)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setRestoreGLStateEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setVignetteEnabled(boolean enabled)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>undistortTexture(int textureId)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>updateViewports(Viewport leftViewport, Viewport rightViewport)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-distortion">public Distortion ()</h3>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-void-afterdrawframe">public void afterDrawFrame ()</h3>
+
+<p>执行失真校正。</p>
+
+<p>必须在一帧绘制完成后调用以完成失真校正。需要注意的是，该方法仅能对使用了 GLStateBackup 对象来记录 OpenGL 状态机并恢复了其状态的部分进行校正。</p>
+
+<h3 id="public-void-beforedrawframe">public void beforeDrawFrame ()</h3>
+
+<p>执行失真校正的必要准备工作。</p>
+
+<p>必须在需要进行校正的每一帧绘制前执行。</p>
+
+<h3 id="public-boolean-haveviewportschanged">public boolean haveViewportsChanged ()</h3>
+
+<p>检查自上一次调用 <code class="prettyprint">updateViewports</code> 后视口的失真校正范围是否有变化。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>若范围有变化返回 <code class="prettyprint">true</code>，否则返回 <code class="prettyprint">false</code></li>
+</ul>
+
+<h3 id="public-void-onfovchanged-headmounteddisplay-hmd-fieldofview-leftfov-fieldofview-rightfov-float-virtualeyetoscreendistance">public void onFovChanged(HeadMountedDisplay hmd, FieldOfView leftFov, FieldOfView rightFov, float virtualEyeToScreenDistance)</h3>
+
+<p>将会在眼镜的观察区域变化时被调用。</p>
+
+<p>该方法在调用 <code class="prettyprint">beforeDrawFrame()</code> 前至少调用一次。在 <code class="prettyprint">beforeDrawFrame()</code> 与 <code class="prettyprint">afterDrawFrame()</code> 之间调用该方法会抛出 <code class="prettyprint">IllegalStateException</code> 异常。</p>
+
+<p>该方法可能会用于失真校正的网格，但在调用 <code class="prettyprint">beforeDrawFrame()</code> 前不会对OpenGL的调用产生影响。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hmd</td>
+<td>头戴显示器</td>
+</tr>
+<tr>
+<td>leftFov</td>
+<td>左眼观察区域大小</td>
+</tr>
+<tr>
+<td>rightFov</td>
+<td>右眼观察区域大小</td>
+</tr>
+<tr>
+<td>virtualEyeToScreenDistance</td>
+<td>虚拟的眼镜至屏幕的距离，以米为单位</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setrestoreglstateenabled-boolean-enabled">public void setRestoreGLStateEnabled (boolean enabled)</h3>
+
+<p>开启或关闭后处理后的 GL 状态的恢复。</p>
+
+<p>若启用，框架会保证每一帧开始时与每一帧结束时的状态相同。</p>
+
+<p>默认为开启。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enabled</td>
+<td>true 表示开启 GL 状态恢复， false 表示禁用。</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setvignetteenabled-boolean-enabled">public void setVignetteEnabled (boolean enabled)</h3>
+
+<p>开启或禁用帧边缘的虚化效果。</p>
+
+<p>若开启，则失真着色器会在可视区域的边界处应用变暗效果以模拟虚化。</p>
+
+<p>默认开启。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>enable</td>
+<td>true 表示开启虚化效果，false 表示禁用</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-undistorttexture-int-textureid">public void undistortTexture (int textureId)</h3>
+
+<p>通过渲染当前的出书目标校正目标材质。</p>
+
+<p>该方法不能再使用了 <code class="prettyprint">beforeDrawFrame()</code> 与 <code class="prettyprint">afterDrawFrame()</code> 方法时直接调用。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>textureId</td>
+<td>要校正的材质</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-updateviewports-viewport-leftviewport-viewport-rightviewport">public void updateViewports (Viewport leftViewport, Viewport rightViewport)
+<p>在失真校正后更新眼睛的视口为它们的有效尺寸。</p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>leftViewport</td>
+<td>用于更新左眼的 viewport 对象</td>
+</tr>
+<tr>
+<td>rightViewport</td>
+<td>用于更新右眼的 viewport 对象</td>
+</tr>
+</tbody></table>
+
+          <h1 id="eye">Eye</h1>
+
+<h3 id="public-class-eye">public class Eye</h3>
+
+<p>描述3D渲染关于眼睛的渲染细节。</p>
+
+<h3 id="内部类">内部类</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>class</td>
+<td>Eye.Type</td>
+<td>定义用于确定眼睛类型的常数</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Eye(int type)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>float[]</td>
+<td>getEyeView()</td>
+</tr>
+<tr>
+<td>FieldOfView</td>
+<td>getFov()</td>
+</tr>
+<tr>
+<td>float[]</td>
+<td>getPerspective(float zNear, float zFar)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>getProjectionChanged()</td>
+</tr>
+<tr>
+<td>int</td>
+<td>getType()</td>
+</tr>
+<tr>
+<td>Viewport</td>
+<td>getViewport()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setProjectionChanged()</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-eye-int-type">public Eye (int type)</h3>
+
+<p>创建一组新的关于眼镜的参数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<p>参数名 | 描述
+&mdash;&mdash;&ndash; |
+type | 表示眼睛类型的 Eye.Type 中的常数。关于无效的眼睛类型常数的行为未定义。</p>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-float-geteyeview">public float[] getEyeView ()</h3>
+
+<p>返回由观察坐标系到当前眼睛坐标系的变换矩阵。</p>
+
+<p>该矩阵应于相机矩阵左乘。</p>
+
+<p>应用于瞳孔间距时需满足 1个世界单位 = 1米 的假设，若不满足，需调用 <code class="prettyprint">android.opengl.Matrix.sacleM</code> 方法修正该矩阵。</p>
+
+<p>变换中已经包含了头部追踪的旋转、平移以及瞳距平移。若只是想从正常视角获取一只眼睛的视角可以使用此方法。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个表示观察空间到该眼睛的 4x4 的列主序变换矩阵</li>
+</ul>
+
+<h3 id="public-fieldofview-getfov">public FieldOfView getFov ()</h3>
+
+<p>返回当前眼睛的观察区域。</p>
+
+<p>使用 <code class="prettyprint">getFov().toPerspectiveMatrix</code> 方法生成透视投影变换矩阵。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>该眼睛的观察区域</li>
+</ul>
+
+<h3 id="public-float-getperspective-float-znear-float-zfar">public float getPerspective (float zNear, float zFar)</h3>
+
+<p>获取当前眼睛透视投影变换矩阵的简便方法。</p>
+
+<p>该方法会调用 <code class="prettyprint">getFov().toPerspectiveMatrix</code> 方法来生成矩阵。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<p>参数名 | 描述
+&mdash;&mdash;&ndash; |
+zNear | 投影中的近Z平面
+zFar | 投影中的远Z平面</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个表示该眼睛透视投影的 4x4 的列主序变换矩阵</li>
+</ul>
+
+<h3 id="public-boolean-getprojectionchanged">public boolean getProjectionChanged ()</h3>
+
+<p>投影矩阵是否已失效并应重新计算。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>true 表示矩阵已失效，false 反之</li>
+</ul>
+
+<h3 id="public-int-gettype">public int getType ()</h3>
+
+<p>返回该眼睛的类型。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>该眼睛的类型，与 <code class="prettyprint">Eye.Type</code> 中常数相对应</li>
+</ul>
+
+<h3 id="public-viewport-getviewport">public Viewport getViewport ()</h3>
+
+<p>返回该眼睛的视口。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>该眼睛用于渲染的视口</li>
+</ul>
+
+<h3 id="public-void-setprojectionchanged">public void setProjectionChanged ()</h3>
+
+<p>强制清除缓存的投影矩阵。</p>
+
+<p>当两帧直接投影参数变化时框架会自动调用该方法。应在该眼睛的 <code class="prettyprint">getFov()</code> 方法返回的观察大小变化时调用该方法。</p>
+
+          <h1 id="eye-type">Eye.Type</h1>
+
+<h3 id="public-static-abstract-class-eye-type">public static abstract class Eye.Type</h3>
+
+<p>定义用于确认眼睛类型的常量。</p>
+
+<h3 id="constants">Constants</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>常量名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>int</td>
+<td>LEFT</td>
+<td>表示3D渲染时的左眼</td>
+</tr>
+<tr>
+<td>int</td>
+<td>MONOCULAR</td>
+<td>表示单眼渲染时的单眼</td>
+</tr>
+<tr>
+<td>int</td>
+<td>RIGHT</td>
+<td>表示3D渲染时的右眼</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Type()</td>
+</tr>
+</tbody></table>
+
+<h2 id="constants">Constants</h2>
+
+<h3 id="public-static-final-int-left">public static final int LEFT</h3>
+
+<p>表示3D渲染时的左眼。</p>
+
+<p>常量值： 1</p>
+
+<h3 id="public-static-final-int-monocular">public static final int MONOCULAR</h3>
+
+<p>表示单眼渲染中的单眼。</p>
+
+<p>常量值： 0</p>
+
+<h3 id="public-static-final-int-right">public static final int RIGHT</h3>
+
+<p>表示3D渲染时的右眼。</p>
+
+<p>常量值： 2</p>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-type">public Type ()</h3>
+
+          <h1 id="fieldofview">FieldOfView</h1>
+
+<h3 id="public-class-fieldofview">public class FieldOfView</h3>
+
+<p>封装了用于传给 glFrustum 的由四个半角(左侧，右侧，底部，顶部)组成的的视野。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>FieldOfView()</td>
+</tr>
+<tr>
+<td>FieldOfView(float left, float right, float bottom, float top)</td>
+</tr>
+<tr>
+<td>FieldOfView(FieldOfView other)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>void</td>
+<td>copy(FieldOfView other)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>equals(Object other)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getBottom()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getLeft()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getRight()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getTop()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setAngles(float left, float right, float bottom, float top)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setBottom(float bottom)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setLeft(float left)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setRight(float right)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setTop(float top)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>toPerspectiveMatrix(float near, float far, float[] perspective, int offset)</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="public-fieldofview">public FieldOfView ()</h3>
+
+<h3 id="public-fieldofview-float-left-float-right-float-bottom-float-top">public FieldOfView (float left, float right, float bottom, float top)</h3>
+
+<p>根据提供的参数创建一个新的视野对象。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>left</td>
+<td>左侧视野半角，单位为度</td>
+</tr>
+<tr>
+<td>right</td>
+<td>右侧视野半角，单位为度</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>底部视野半角，单位为度</td>
+</tr>
+<tr>
+<td>top</td>
+<td>顶部视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-fieldofview">public FieldOfView ()</h3>
+
+<p>拷贝构造函数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要拷贝的 FieldOfView 对象</td>
+</tr>
+</tbody></table>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-void-copy-fieldofview-other">public void copy (FieldOfView other)</h3>
+
+<p>将传入的 FieldOfView 对象中的内容拷贝到当前对象中。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要拷贝的 FieldOfView 对象</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-boolean-equals-object-other">public boolean equals (Object other)</h3>
+
+<p>比较当前实例与传入对象是否相同。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要与当前实例比较的对象</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>true 表示相同，false 反之</li>
+</ul>
+
+<h3 id="public-float-getbottom">public float getBottom ()</h3>
+
+<p>返回底部视野的半角角度。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>底部视野的半角角度。</li>
+</ul>
+
+<h3 id="public-float-getleft">public float getLeft ()</h3>
+
+<p>返回左侧视野的半角角度。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>左侧部视野的半角角度。</li>
+</ul>
+
+<h3 id="public-float-getright">public float getRight ()</h3>
+
+<p>返回右侧视野的半角角度。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>右侧部视野的半角角度。</li>
+</ul>
+
+<h3 id="public-float-gettop">public float getTop ()</h3>
+
+<p>返回顶部视野的半角角度。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>顶部视野的半角角度。</li>
+</ul>
+
+<h3 id="public-void-setangles-float-left-float-right-float-bottom-float-top">public void setAngles (float left, float right, float bottom, float top)</h3>
+
+<p>设置视野的半角。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>left</td>
+<td>左侧视野半角，单位为度</td>
+</tr>
+<tr>
+<td>right</td>
+<td>右侧视野半角，单位为度</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>底部视野半角，单位为度</td>
+</tr>
+<tr>
+<td>top</td>
+<td>顶部视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setbottom-float-bottom">public void setBottom (float bottom)</h3>
+
+<p>设置底部视野半角角度。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bottom</td>
+<td>底部视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setleft-float-left">public void setLeft (float left)</h3>
+
+<p>设置左侧视野半角角度。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>left</td>
+<td>左侧视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setright-float-right">public void setRight (float right)</h3>
+
+<p>设置右侧视野半角角度。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>right</td>
+<td>右侧视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-settop-float-top">public void setTop (float top)</h3>
+
+<p>设置顶部视野半角角度。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>top</td>
+<td>顶部视野半角，单位为度</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-toperspectivematrix-float-near-float-far-float-perspective-int-offset">public void toPerspectiveMatrix (float near, float far, float[] perspective, int offset)</h3>
+
+<p>生成该对象的透视投影矩阵。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>near</td>
+<td>近平面</td>
+</tr>
+<tr>
+<td>far</td>
+<td>远平面</td>
+</tr>
+<tr>
+<td>perspective</td>
+<td>用于填充的透视矩阵</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>写入透视数组时的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws
+<table><thead>
+<tr>
+<th>异常名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>若没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-string-tostring">public String toString ()</h3>
+
+<p>返回一串简明、可读的关于对象的描述。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>关于该对象的文字描述</li>
+</ul>
+
+          <h1 id="headmounteddisplay">HeadMountedDisplay</h1>
+
+<h3 id="public-class-headmounteddisplay">public class HeadMountedDisplay</h3>
+
+<p>封装了关于头戴3D显示器的关于屏幕与 Cardboard 适配装置的参数。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HeadMountedDisplay(ScreenParams screenParams, CardboardDeviceParams cardboardDevice)</td>
+</tr>
+<tr>
+<td>HeadMountedDisplay(HeadMountedDisplay hmd)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>boolean</td>
+<td>equals(Object other)</td>
+</tr>
+<tr>
+<td>CardboardDeviceParams</td>
+<td>getCardboardDeviceParams()</td>
+</tr>
+<tr>
+<td>ScreenParams</td>
+<td>getScreenParams()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setCardboardDeviceParams(CardboardDeviceParams cardboardDeviceParams)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setScreenParams(ScreenParams screen)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="headmounteddisplay-screenparams-screenparams-cardboarddeviceparams-cardboarddevice">HeadMountedDisplay(ScreenParams screenParams, CardboardDeviceParams cardboardDevice) |</h3>
+
+<p>根据提供的对象创建一个新的头戴显示器对象。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>screenParams</td>
+<td>屏幕参数</td>
+</tr>
+<tr>
+<td>cardboardDevice</td>
+<td>Cardboard 设备参数</td>
+</tr>
+</tbody></table>
+
+<h3 id="headmounteddisplay-headmounteddisplay-hmd">HeadMountedDisplay(HeadMountedDisplay hmd) |</h3>
+
+<p>拷贝构造函数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hmd</td>
+<td>要拷贝的头戴显示器对象</td>
+</tr>
+</tbody></table>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-boolean-equals-object-other">public boolean equals (Object other)</h3>
+
+<p>比较当前实例与传入对象是否相同。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>要与当前实例比较的对象</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>true 表示相同，false 反之</li>
+</ul>
+
+<h3 id="public-cardboarddeviceparams-getcardboarddeviceparams">public CardboardDeviceParams getCardboardDeviceParams ()</h3>
+
+<p>返回描述 Cardboard 设备的参数。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>描述 Cardboard 设备的参数</li>
+</ul>
+
+<h3 id="public-screenparams-getscreenparams">public ScreenParams getScreenParams ()</h3>
+
+<p>返回描述屏幕的参数。</p>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>描述屏幕的参数</li>
+</ul>
+
+<h3 id="public-void-setcardboarddeviceparams-cardboarddeviceparams-cardboarddeviceparams">public void setCardboardDeviceParams (CardboardDeviceParams cardboardDeviceParams)</h3>
+
+<p>设置描述 Cardboard 设备的参数。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardboardDeviceParams</td>
+<td>描述 Cardboard 设备的参数</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-setscreenparams">public void setScreenParams ()</h3>
+
+<p>设置描述屏幕的参数</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>screen</td>
+<td>描述屏幕设备的参数</td>
+</tr>
+</tbody></table>
+
+          <h1 id="headtransform">HeadTransform</h1>
+
+<h3 id="public-class-headtransform">public class HeadTransform</h3>
+
+<p>描述根据眼睛参数的独立头部转换。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HeadTransform()</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>void</td>
+<td>getEulerAngles(float[] eulerAngles, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getForwardVector(float[] forward, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getHeadView(float[] headView, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getQuaternion(float[] quaternion, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getRightVector(float[] right, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getTranslation(float[] translation, int offset)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>getUpVector(float[] up, int offset)</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="headtransform">HeadTransform () |</h3>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-void-geteulerangles-float-eulerangles-int-offset">public void getEulerAngles (float[] eulerAngles, int offset)</h3>
+
+<p>提供表示头部转动角度的欧拉角。</p>
+
+<p>由于可能产生万向节死锁，不推荐使用欧拉角，应尽可能使用四元数或旋转矩阵。</p>
+
+<p>提供的代表视口旋转的值分别为 pitch、 yaw、 roll，矩阵 R = Rz(roll) * Rx(pitch) * Ry(yaw) 代表了一个完整的旋转。该旋转矩阵的顺序保证了 yaw 与 roll 在 [-pi, pi] 区间中。</p>
+
+<p>单位为弧度，按照如下的顺序与区间：</p>
+
+<ul>
+<li>Pitch (X axis): [-pi/2, pi/2]</li>
+<li>Yaw (Y axis): [-pi, pi]</li>
+<li>Roll (Z axis): [-pi, pi]</li>
+</ul>
+
+<p>X-Y-Z 坐标轴按照 OpenGL 风格的右手系。当出现万向节死锁时，yaw 强制为0并提供有效的 roll 角度。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eulerAngles</td>
+<td>要写入了3个角度的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>在数组中的写入位置的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-getforwardvector-float-forward-int-offset">public void getForwardVector (float[] forward, int offset)</h3>
+
+<p>提供表示头朝向的 3x1 的单位向量。</p>
+
+<p>需要注意在 OpenGL 中的朝向向量是基于相反方向的 Z 轴的，若使用了右手坐标系需要确保对其进行了转换。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>forward</td>
+<td>要写入向量的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>写入位置在数组中的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-getheadview-float-headview-int-offset">public void getHeadView (float[] headView, int offset)</h3>
+
+<p>表示相机到头部视角的转换矩阵。</p>
+
+<p>头部的原点定义为两眼的中点位置。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>headView</td>
+<td>要写入4x4列主序转换矩阵的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>写入位置在数组中的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<p>public void getQuaternion (float[] quaternion, int offset)</p>
+
+<p>提供表示头部转向的四元数。    </p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>quaternion</td>
+<td>要写入了四元数(x,y,z,w)的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>在数组中的写入位置的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-getrightvector-float-right-int-offset">public void getRightVector (float[] right, int offset)</h3>
+
+<p>提供表示向右方向的3x1的单位向量。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>right</td>
+<td>要写入了向量的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>在数组中的写入位置的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-gettranslation-float-translation-int-offset">public getTranslation (float[] translation, int offset)</h3>
+
+<p>提供表示头部相对平移的3x1的向量。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>translation</td>
+<td>要写入了向量的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>在数组中的写入位置的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-void-gettopvector-float-top-int-offset">public void getTopVector (float[] top, int offset)</h3>
+
+<p>提供表示向上方向的3x1的单位向量。</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>top</td>
+<td>要写入了向量的数组</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>在数组中的写入位置的偏移量</td>
+</tr>
+</tbody></table>
+
+<h4 id="throws">Throws</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>IllegalArgumentException</td>
+<td>当没有足够的空间写入结果时抛出</td>
+</tr>
+</tbody></table>
+
+          <h1 id="screenparams">ScreenParams</h1>
+
+<h3 id="public-class-screenparams">public class ScreenParams</h3>
+
+<p>定义了用于适配 Cardboard 设备的屏幕参数。</p>
+
+<h3 id="public-constructors">Public Constructors</h3>
+
+<table><thead>
+<tr>
+<th>构造函数</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ScreenParams(Display display)</td>
+</tr>
+</tbody></table>
+
+<h3 id="public-methods">Public Methods</h3>
+
+<table><thead>
+<tr>
+<th>定义</th>
+<th>函数名</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>static ScreenParams</td>
+<td>creatFromInputStream(Display display, InputStream inputStream)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>equals(Object other)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getBorderSizeMeters()</td>
+</tr>
+<tr>
+<td>int</td>
+<td>getHeight()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getHeightMeters()</td>
+</tr>
+<tr>
+<td>int</td>
+<td>getWidth()</td>
+</tr>
+<tr>
+<td>float</td>
+<td>getWidthMeters()</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setBorderSizeMeters(float screenBorderSize)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setHeight(int height)</td>
+</tr>
+<tr>
+<td>void</td>
+<td>setWidth(int width)</td>
+</tr>
+<tr>
+<td>String</td>
+<td>toString()</td>
+</tr>
+</tbody></table>
+
+<h3 id="inherited-methods">Inherited Methods</h3>
+
+<ul>
+<li>From class java.lang.Object</li>
+</ul>
+
+<h2 id="public-constructors">Public Constructors</h2>
+
+<h3 id="screenparams-display-display">ScreenParams (Display display) |</h3>
+
+<p>初始化参数的默认值。</p>
+
+<h2 id="public-methods">Public Methods</h2>
+
+<h3 id="public-static-screenparams-creatfrominputstream-display-display-inputstream-inputstream">public static ScreenParams creatFromInputStream (Display display, InputStream inputStream)</h3>
+
+<p>根据 <code class="prettyprint">InputStream</code> 初始化屏幕参数。</p>
+
+<p>调用者负责关闭流。</p>
+
+parameters&quot;>Parameters</h4>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inputStream</td>
+<td>包含手机参数的输入流</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<ul>
+<li>一个新的 ScreenParams 对象，若发生错误返回 <code class="prettyprint">null</code></li>
+</ul>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="java">java</a>
           </div>
       </div>
     </div>
